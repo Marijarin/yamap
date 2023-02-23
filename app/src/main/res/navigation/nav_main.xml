@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/mapsFragment">
+
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="ru.netology.travelmark.app.ui.MapsFragment"
+        android:label="MapsFragment" >
+        <action
+            android:id="@+id/action_mapsFragment_to_placesFragment"
+            app:destination="@id/placesFragment" />
+        <action
+            android:id="@+id/action_mapsFragment_to_dialogPlaceFragment"
+            app:destination="@id/dialogPlaceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/placesFragment"
+        android:name="ru.netology.travelmark.app.ui.PlacesFragment"
+        android:label="PlacesFragment" >
+        <action
+            android:id="@+id/action_placesFragment_to_placeFragment"
+            app:destination="@id/placeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/placeFragment"
+        android:name="ru.netology.travelmark.app.ui.PlaceFragment"
+        android:label="PlaceFragment" />
+    <dialog
+        android:id="@+id/dialogPlaceFragment"
+        android:name="ru.netology.travelmark.app.ui.DialogPlaceFragment"
+        android:label="DialogPlaceFragment" />
+</navigation>
