@@ -37,7 +37,7 @@ class DialogPlaceFragment : DialogFragment() {
 
         binding.add.setOnClickListener {
             AndroidUtils.hideKeyboard(requireView())
-            if (binding.latitude.text.isNotBlank() && binding.longitude.text.isNotBlank()) {
+            if (binding.name.text.isNotBlank() && binding.description.text.isNotBlank()) {
                 mapViewModel.save(
                     Place(
                         id = requireArguments().getLong("ID_KEY"),

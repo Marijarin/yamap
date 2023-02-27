@@ -33,6 +33,7 @@ import com.yandex.mapkit.user_location.UserLocationObjectListener
 import com.yandex.mapkit.user_location.UserLocationView
 import com.yandex.runtime.ui_view.ViewProvider
 import kotlinx.coroutines.flow.collectLatest
+import ru.netology.travelmark.BuildConfig
 import ru.netology.travelmark.R
 
 import ru.netology.travelmark.app.viewmodel.MapViewModel
