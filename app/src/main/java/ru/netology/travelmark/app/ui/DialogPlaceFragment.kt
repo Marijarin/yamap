@@ -5,10 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.view.isGone
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.flow.onCompletion
+import ru.netology.travelmark.R
 import ru.netology.travelmark.app.dto.Place
 import ru.netology.travelmark.app.util.AndroidUtils
 import ru.netology.travelmark.app.viewmodel.MapViewModel
@@ -37,6 +40,7 @@ class DialogPlaceFragment : DialogFragment() {
 
         binding.add.setOnClickListener {
             AndroidUtils.hideKeyboard(requireView())
+
             if (binding.name.text.isNotBlank() && binding.description.text.isNotBlank()) {
                 mapViewModel.save(
                     Place(
@@ -47,6 +51,7 @@ class DialogPlaceFragment : DialogFragment() {
                         longitude = requireArguments().getDouble("LONG_KEY")
                     )
                 )
+                dismiss()
             }
         }
 

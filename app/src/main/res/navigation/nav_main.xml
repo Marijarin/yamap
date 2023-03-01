@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_placesFragment_to_placeFragment"
             app:destination="@id/placeFragment" />
+        <action
+            android:id="@+id/action_placesFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
     </fragment>
     <fragment
         android:id="@+id/placeFragment"
@@ -31,5 +34,9 @@
     <dialog
         android:id="@+id/dialogPlaceFragment"
         android:name="ru.netology.travelmark.app.ui.DialogPlaceFragment"
-        android:label="DialogPlaceFragment" />
+        android:label="DialogPlaceFragment" >
+        <action
+            android:id="@+id/action_dialogPlaceFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+    </dialog>
 </navigation>

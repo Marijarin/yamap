@@ -31,6 +31,7 @@ import com.yandex.mapkit.mapview.MapView
 import com.yandex.mapkit.user_location.UserLocationLayer
 import com.yandex.mapkit.user_location.UserLocationObjectListener
 import com.yandex.mapkit.user_location.UserLocationView
+import com.yandex.runtime.image.ImageProvider
 import com.yandex.runtime.ui_view.ViewProvider
 import kotlinx.coroutines.flow.collectLatest
 import ru.netology.travelmark.BuildConfig
@@ -65,7 +66,7 @@ class MapsFragment : Fragment() {
 
         override fun onObjectUpdated(view: UserLocationView, event: ObjectEvent) {
             userLocation.cameraPosition()?.target?.let {
-                mapView?.map?.move(CameraPosition(it, 10F, 0F, 0F))
+                mapView?.map?.move(CameraPosition(it, 15F, 0F, 0F))
             }
             userLocation.setObjectListener(null)
         }
@@ -74,7 +75,7 @@ class MapsFragment : Fragment() {
     private val viewModel by viewModels<MapViewModel>()
 
     private val placeTapListener = MapObjectTapListener { mapObject, _ ->
-        viewModel.removeById(mapObject.userData as Long)
+       findNavController().navigate(R.id.action_mapsFragment_to_placesFragment)
         true
     }
 
@@ -146,12 +147,12 @@ class MapsFragment : Fragment() {
                         ).apply {
                             userData = place.id
                         }
+
                     }
                 }
             }
             collection.addTapListener(placeTapListener)
 
-            // Переход к точке на карте после клика на списке
             val arguments = arguments
             if ((arguments != null) &&
                 arguments.containsKey(LAT_KEY) &&
@@ -169,7 +170,6 @@ class MapsFragment : Fragment() {
                 arguments.remove(LAT_KEY)
                 arguments.remove(LONG_KEY)
             } else {
-                // При входе в приложение показываем текущее местоположение
                 userLocation.setObjectListener(locationObjectListener)
             }
         }

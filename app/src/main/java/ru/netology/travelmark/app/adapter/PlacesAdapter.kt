@@ -46,6 +46,8 @@ class PlaceViewHolder(
         binding.apply {
             name.text = place.name
             description.text = place.description
+            latitude.text = place.latitude.toString()
+            longitude.text = place.longitude.toString()
 
             root.setOnClickListener {
                 onInteractionListener.onClick(place)

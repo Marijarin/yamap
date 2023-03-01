@@ -1,10 +1,9 @@
 package ru.netology.travelmark.app.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.core.os.bundleOf
+import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -32,7 +31,7 @@ class PlacesFragment: Fragment() {
 
             override fun onClick(place: Place) {
                 findNavController().navigate(
-                    R.id.action_mapsFragment_to_placesFragment, bundleOf(
+                    R.id.action_placesFragment_to_mapsFragment, bundleOf(
                         MapsFragment.LAT_KEY to place.latitude,
                         MapsFragment.LONG_KEY to place.longitude
                     )
@@ -57,6 +56,21 @@ class PlacesFragment: Fragment() {
                 binding.empty.isVisible = places.isEmpty()
             }
         }
+        requireActivity().addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.map_menu, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean =
+                if (menuItem.itemId == R.id.list) {
+                    findNavController().navigate(R.id.action_placesFragment_to_mapsFragment)
+                    true
+                } else {
+                    false
+                }
+
+        }, viewLifecycleOwner)
+
 
         return binding.root
     }
