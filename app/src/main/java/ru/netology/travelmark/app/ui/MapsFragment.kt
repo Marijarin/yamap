@@ -143,10 +143,10 @@ class MapsFragment : Fragment() {
                         placeBinding.name.text = place.name
                         collection.addPlacemark(
                             Point(place.latitude, place.longitude),
-                            ViewProvider(placeBinding.root)
+                            ViewProvider(placeBinding.image)
                         ).apply {
                             userData = place.id
-                        }
+                        }.setText(place.name)
 
                     }
                 }
