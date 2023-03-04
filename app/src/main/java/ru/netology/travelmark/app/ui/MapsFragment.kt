@@ -139,14 +139,13 @@ class MapsFragment : Fragment() {
                 viewModel.data.collectLatest { places ->
                     collection.clear()
                     places.forEach { place ->
-                        val placeBinding = FragmentPlaceBinding.inflate(layoutInflater)
-                        placeBinding.name.text = place.name
-                        collection.addPlacemark(
+                            collection.addPlacemark(
                             Point(place.latitude, place.longitude),
-                            ViewProvider(placeBinding.image)
+                            ImageProvider.fromResource(requireContext(),R.raw.star)
                         ).apply {
                             userData = place.id
-                        }.setText(place.name)
+                            this.setText(place.name)
+                        }
 
                     }
                 }
